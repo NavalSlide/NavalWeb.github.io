@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="pictures\logo.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personas Más Buscadas</title>
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0056b3;
+            --accent-color: #ffcc00;
+            --background-color: #f4f4f9;
+            --text-color: #333;
+            --light-gray: #ccc;
+            --font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: filter 0.3s ease;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            transition: font-size 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: white;
+            z-index: 1100;
+        }
+
+        .logo {
+            position: absolute;
+            top: 0px;
+            right: 20px;
+            height: 70px;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            z-index: 1000;
+            transition: left 0.3s ease;
+        }
+
+        .menu.show {
+            left: 0;
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+            border-bottom: 1px solid var(--secondary-color);
+            transition: background 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .menu a.red {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .menu-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            margin: 0 0 10px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .card-content p {
+            margin: 0;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Estilos responsivos */
+        @media screen and (max-width: 768px) {
+            .menu {
+                width: 200px;
+            }
+
+            .menu-toggle {
+                font-size: 28px;
+                top: 0;
+                left: 0;
+            }
+
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            header {
+                padding: 15px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+            }
+
+            header h1 {
+                font-size: 1em;
+                margin: 0;
+                flex: 1;
+            }
+
+            .logo {
+                display: block;
+                height: 40px;
+            }
+        }
+        
+    </style>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const overlay = document.querySelector('.overlay');
+            const body = document.body;
+
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                overlay.style.display = 'none';
+                body.classList.remove('no-scroll');
+            } else {
+                menu.classList.add('show');
+                overlay.style.display = 'block';
+                body.classList.add('no-scroll');
+            }
+        }
+
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>Personas Más Buscadas de la Naval</h1>
+        <img src="pictures\logo.png" alt="Logo" class="logo">
+    </header>
+    <div class="overlay"></div>
+    <div class="menu">
+        <div class="menu-header">
+            <h2>Menú</h2>
+        </div>
+        <a href="index.html">Inicio</a>
+        <a href="info.html">Información</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Video Secreto</a>
+        <a href="login.html" class="red">El Más Buscado</a>
+    </div>
+    <div class="container">
+        <div class="card" onclick="navigateTo('persona1.html')">
+            <img src="pictures\img1.png" alt="Persona 1">
+            <div class="card-content">
+                <h3>Jairon Lopez</h3>
+                <p>Un uso ilegal de ChatGPT incluye actividades como copiar tareas, exámenes, proyectos, entre otros.
+                </p>
+            </div>
+        </div>
+        <div class="card" onclick="navigateTo('persona2.html')">
+            <img src="pictures\img2.png" alt="Persona 2">
+            <div class="card-content">
+                <h3>Yeri Segura</h3>
+                <p>Buscado por robar material escolar de sus compañeros, como libros y cuadernos. Su comportamiento ha causado molestias en
+                la escuela.</p>
+            </div>
+        </div>
+        <div class="card" onclick="navigateTo('persona3.html')">
+            <img src="pictures/img3.png" alt="Persona 3">
+            <div class="card-content">
+                <h3>Pablo (Peligroso)</h3>
+                <p>Pablo, apodado "El Conserje", lidera una banda criminal que opera bajo la fachada de servicios de limpieza. </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
