@@ -213,78 +213,118 @@
             }
 
 
-        /* Estilos responsivos */
-        @media screen and (max-width: 768px) {
-            .menu {
-                width: 200px;
-            }
-
-            .menu-toggle {
-                font-size: 28px;
-                top: 0;
-                left: 0;
-            }
-
-            .container {
-                margin: 10px;
-                padding: 15px;
-            }
-
-            header {
-                padding: 15px;
-                text-align: center;
-                display: flex;
-                align-items: center;
-            }
-
-            header h1 {
-                font-size: 1em;
-                margin: 0;
-                flex: 1;
-            }
-
-            .logo {
-                display: block;
-                height: 40px;
-            }
-        }
-    </style>
-    <script>
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            const overlay = document.querySelector('.overlay');
-            const body = document.body;
-
-            if (menu.classList.contains('show')) {
-                menu.classList.remove('show');
-                overlay.style.display = 'none';
-                body.classList.remove('no-scroll');
-            } else {
-                menu.classList.add('show');
-                overlay.style.display = 'block';
-                body.classList.add('no-scroll');
-            }
+    /* Estilos responsivos */
+    @media screen and (max-width: 768px) {
+        .menu {
+            width: 200px;
         }
 
-        function navigateTo(url) {
-            window.location.href = url;
+        .menu-toggle {
+            font-size: 28px;
+            top: 0;
+            left: 0;
         }
-        function login() {
-            const password = document.getElementById("password").value.toLowerCase(); 
-            if (password.includes("edad")) {
-                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; 
-            } else {
-                alert("Contraseña incorrecta.");
-            }
+
+        .container {
+            margin: 10px;
+            padding: 15px;
         }
-    </script>
-</head>
+
+        header {
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.2em;
+            margin: 0;
+            flex: 1;
+        }
+
+        .logo {
+            display: block;
+            height: 40px;
+        }
+
+        .login-card {
+            margin: 10px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .login-card input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .login-card button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            background-color: var(--primary-color, #007BFF);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-card button:hover {
+            background-color: #0056b3;
+        }
+
+        .hint {
+            font-size: 0.9em;
+            color: gray;
+            margin-top: 10px;
+        }
+    }
+</style>
+
+<script>
+    function toggleMenu() {
+        const menu = document.querySelector('.menu');
+        const overlay = document.querySelector('.overlay');
+        const body = document.body;
+
+        if (menu.classList.contains('show')) {
+            menu.classList.remove('show');
+            overlay.style.display = 'none';
+            body.classList.remove('no-scroll');
+        } else {
+            menu.classList.add('show');
+            overlay.style.display = 'block';
+            body.classList.add('no-scroll');
+        }
+    }
+
+    function navigateTo(url) {
+        window.location.href = url;
+    }
+
+    function login() {
+        const password = document.getElementById("password").value.toLowerCase();
+        if (password.includes("edad")) {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        } else {
+            alert("Contraseña incorrecta.");
+        }
+    }
+</script>
 
 <body>
     <header>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <h1>Verifique su identidad</h1>
-        <img src="pictures\logo.png" alt="Logo" class="logo">
+        <img src="pictures/logo.png" alt="Logo" class="logo">
     </header>
     <div class="overlay"></div>
     <div class="menu">
@@ -304,6 +344,8 @@
             <p class="hint">Pista: "Que sube pero nunca baja"</p>
         </div>
     </div>
+    <footer
+        style="text-align: center; padding: 20px; background-color: var(--primary-color, #007BFF); color: white; margin-top: 20px;">
+        © 2024 Academia Naval. Todos los derechos reservados.
+    </footer>
 </body>
-
-</html>
