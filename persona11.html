@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="pictures\logo.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información sobre Nancy Guillem</title>
+    <style>
+
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0056b3;
+            --accent-color: #ffcc00;
+            --background-color: #f4f4f9;
+            --text-color: #333;
+            --light-gray: #ccc;
+            --font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: filter 0.3s ease;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        .logo {
+            position: absolute;
+            top: 0px;
+            right: 20px;
+            height: 70px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .menu-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: white;
+            z-index: 1100;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            z-index: 1000;
+            transition: left 0.3s ease;
+        }
+
+        .menu.show {
+            left: 0;
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+            border-bottom: 1px solid var(--secondary-color);
+            transition: background 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .menu a.red {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .menu-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .placeholder {
+            background: var(--background-color);
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 16px;
+        }
+
+        .image-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 5px solid var(--light-gray);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Estilos responsivos */
+        @media screen and (max-width: 768px) {
+            .menu {
+                width: 200px;
+            }
+
+            .menu-toggle {
+                font-size: 28px;
+                top: 0;
+                left: 0;
+            }
+
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            header {
+                padding: 15px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+            }
+
+            header h1 {
+                font-size: 1em;
+                margin: 0;
+                flex: 1;
+            }
+
+            .logo {
+                display: block;
+                height: 40px;
+            }
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const overlay = document.querySelector('.overlay');
+            const body = document.body;
+
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                overlay.style.display = 'none';
+                body.classList.remove('no-scroll');
+            } else {
+                menu.classList.add('show');
+                overlay.style.display = 'block';
+                body.classList.add('no-scroll');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <h1>Información sobre Nancy Guillemz</h1>
+        <img src="pictures\logo.png" alt="Logo" class="logo">
+    </header>
+    <div class="overlay"></div>
+    <div class="menu">
+        <div class="menu-header">
+            <h2>Menú</h2>
+        </div>
+        <a href="index.html">Inicio</a>
+        <a href="info.html">Información</a>
+        <a href="ForoNaval.html" class="red">Foro</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Video Secreto</a>
+        <a href="login.html" class="red">El Más Buscado</a>
+    </div>
+    <div class="container">
+        <h2>Datos de Identificación</h2>
+        <div class="placeholder">
+            <strong>Nombre:</strong> Nancy Guillem<br>
+            <strong>Alias:</strong> Jaisemberg<br>
+            <strong>Edad:</strong> 55 años <br>
+            <strong>Última ubicación conocida:</strong> En su laboratorio <br>
+        </div>
+
+        <h2>Motivo de Búsqueda</h2>
+        <div class="placeholder">
+Utilizó su conocimiento avanzado para fabricar "metas"
+azules (dulces cristalinos) en las afueras de un Tía desde una camioneta, generando confusión y controversia en el
+mercado.<br>
+            <strong>Recompensa:</strong> $1,000000<br>
+        </div>
+
+        <h2>Historia:</h2>
+        <div class="placeholder">
+Nancy Guillem, una destacada profesora de química, comenzó a preocuparse seriamente al ver que su jubilación estaba cada
+vez más cerca. Consciente de que su modesto salario no sería suficiente para mantener su estilo de vida, decidió buscar
+una solución poco convencional. Fue entonces cuando recordó a un exalumno de la Academia Naval, Juan Rosahombre, famoso
+por su habilidad para encontrar “oportunidades de negocio” poco ortodoxas.
+
+Al reunirse con Juan, este la convenció de aprovechar su conocimiento avanzado en química para crear un producto
+revolucionario: "metas" azules. Sin embargo, estas no serían drogas, sino dulces cristalinos de alta calidad que, por su
+apariencia, generarían un gran revuelo. A pesar de sus dudas iniciales, Nancy aceptó la propuesta, y juntos instalaron
+su laboratorio en las afueras de un supermercado Tía, operando desde una vieja camioneta.
+
+Los dulces rápidamente ganaron popularidad, pero también atrajeron la atención equivocada. Autoridades y compradores
+confundidos comenzaron a investigar, creyendo que se trataba de una operación de drogas. Aunque su negocio era
+técnicamente legal, la confusión y las ventas masivas los convirtieron en fugitivos.
+
+Cuando todo parecía perdido, Nancy tomó una decisión desesperada: contactar a Gustavo, un influyente jefe conocido en el
+bajo mundo como "Los Pollos Campers". Gustavo era famoso por sus operaciones encubiertas y su habilidad para convertir
+productos dudosos en éxitos del mercado negro. Después de intensas negociaciones, Gustavo accedió a distribuir los
+dulces azules bajo su red ilegal, a cambio de que Nancy y Juan montaran un laboratorio de producción debajo de su
+restaurante.
+
+Con el respaldo de Gustavo, la operación alcanzó un nuevo nivel de sofisticación. La producción de dulces aumentó
+drásticamente, y su distribución se extendió a zonas aún más amplias. Sin embargo, el riesgo también creció
+exponencialmente, y ahora Nancy, conocida como "Jaisemberg" en el bajo mundo, se enfrenta a una persecución aún mayor.
+Su historia sigue siendo un enigma, mientras las autoridades y rivales intentan descifrar el paradero del laboratorio y
+detener la expansión de su peculiar imperio azul.
+
+        </div>
+
+        <h2>Imágenes</h2>
+        <div class="image-section">
+            <p class="placeholder">Unica foto de su laboratorio:</p>
+            <img src="pictures\img11_1.png" alt="Foto principal de Jairon Lopez">
+
+            <p class="placeholder">Foto de donde opera:</p>
+            <img src="pictures\img11_2.png" alt="Foto principal de Jairon Lopez">
+        </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="pagina_de_reporte.html" style="
+                                            display: inline-block;
+                                            background-color: #ff0000;
+                                            color: white;
+                                            padding: 15px 30px;
+                                            text-decoration: none;
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                            border-radius: 5px;
+                                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                                            transition: background-color 0.3s ease, transform 0.2s;
+                                        " onmouseover="this.style.backgroundColor='#cc0000'; this.style.transform='scale(1.05)';"
+                            onmouseout="this.style.backgroundColor='#ff0000'; this.style.transform='scale(1)';">
+                            REPORTAR AVISTAMIENTO
+                        </a>
+                    </div>
+    </div>
+        <footer
+            style="text-align: center; padding: 20px; background-color: var(--primary-color); color: white; margin-top: 20px;">
+            © 2024 Academia Naval. Todos los derechos reservados.
+        </footer>
+</body>
+
+</html>
