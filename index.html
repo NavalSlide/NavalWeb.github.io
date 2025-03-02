@@ -6,24 +6,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personas Más Buscadas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #003366;
-            --secondary-color: #0056b3;
-            --accent-color: #ffcc00;
-            --background-color: #f4f4f9;
-            --text-color: #333;
-            --light-gray: #ccc;
-            --font-family: 'Arial', sans-serif;
+            --primary-color: #1a4b78;
+            --secondary-color: #2a6bae;
+            --accent-color: #ffc107;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #343a40;
+            --text-secondary: #6c757d;
+            --border-radius: 12px;
+            --transition-speed: 0.3s;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --font-family-heading: 'Montserrat', sans-serif;
+            --font-family-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-family);
+            font-family: var(--font-family-body);
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
             color: var(--text-color);
-            transition: filter 0.3s ease;
+            transition: background-color 0.5s ease;
+            line-height: 1.6;
         }
 
         body.no-scroll {
@@ -33,124 +48,122 @@
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 20px;
-            text-align: center;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
             margin: 0;
-            font-size: 1.8em;
-            transition: font-size 0.3s ease, transform 0.3s ease;
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+            transition: transform 0.5s ease;
         }
 
         .menu-toggle {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
             cursor: pointer;
-            font-size: 30px;
-            background: none;
             border: none;
+            background: transparent;
             color: white;
+            font-size: 1.6rem;
+            transition: transform var(--transition-speed);
             z-index: 1100;
+        }
+
+        .menu-toggle:hover {
+            transform: translateY(-50%) scale(1.1);
         }
 
         .logo {
             position: absolute;
-            top: 0px;
-            right: 20px;
-            height: 70px;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            height: 55px;
+            transition: transform var(--transition-speed);
+        }
+
+        .logo:hover {
+            transform: translateY(-50%) scale(1.05);
         }
 
         .menu {
             position: fixed;
             top: 0;
-            left: -250px;
-            width: 250px;
+            left: -300px;
+            width: 300px;
             height: 100%;
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
             overflow-y: auto;
             z-index: 1000;
-            transition: left 0.3s ease;
+            transition: left 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
         .menu.show {
             left: 0;
         }
 
+        .menu-header {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-family: var(--font-family-heading);
+        }
+
+        .menu-header h2 {
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
         .menu a {
             display: block;
-            padding: 15px;
+            padding: 1rem 1.5rem;
             text-decoration: none;
             color: white;
-            border-bottom: 1px solid var(--secondary-color);
-            transition: background 0.3s;
+            font-family: var(--font-family-body);
+            font-weight: 400;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s ease;
+            transform: skewX(-15deg);
+        }
+
+        .menu a:hover::before {
+            transform: translateX(100%) skewX(-15deg);
         }
 
         .menu a:hover {
-            background-color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-left: 2rem;
         }
 
         .menu a.red {
             color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .menu-header {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid var(--light-gray);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            width: 300px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .card-content {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .card-content h3 {
-            margin: 0 0 10px;
-            color: var(--primary-color);
-            text-align: center;
-        }
-
-        .card-content p {
-            margin: 0;
+            font-weight: 600;
         }
 
         .overlay {
@@ -161,179 +174,386 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
             z-index: 999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
-        /* Estilos responsivos */
+        .overlay.show {
+            opacity: 1;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: none;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .card-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+        }
+
+        .card-content h3 {
+            margin: 0 0 0.8rem;
+            color: var(--primary-color);
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .card-content h3 {
+            color: var(--secondary-color);
+        }
+
+        .card-content p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .status-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            z-index: 2;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(255, 0, 0, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 2rem;
+            font-family: var(--font-family-body);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Animation for page load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container .card {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .container .card:nth-child(1) { animation-delay: 0.1s; }
+        .container .card:nth-child(2) { animation-delay: 0.2s; }
+        .container .card:nth-child(3) { animation-delay: 0.3s; }
+        .container .card:nth-child(4) { animation-delay: 0.4s; }
+        .container .card:nth-child(5) { animation-delay: 0.5s; }
+        .container .card:nth-child(6) { animation-delay: 0.6s; }
+        .container .card:nth-child(7) { animation-delay: 0.7s; }
+        .container .card:nth-child(8) { animation-delay: 0.8s; }
+        .container .card:nth-child(9) { animation-delay: 0.9s; }
+        .container .card:nth-child(10) { animation-delay: 1s; }
+        .container .card:nth-child(11) { animation-delay: 1.1s; }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        body.dark-mode {
+            --background-color: #121212;
+            --card-background: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Responsive styles */
         @media screen and (max-width: 768px) {
-            .menu {
-                width: 200px;
-            }
-
-            .menu-toggle {
-                font-size: 28px;
-                top: 0;
-                left: 0;
-            }
-
-            .container {
-                margin: 10px;
-                padding: 15px;
-            }
-
             header {
-                padding: 15px;
-                text-align: center;
-                display: flex;
-                align-items: center;
+                padding: 1rem;
             }
-
+            
             header h1 {
-                font-size: 1em;
-                margin: 0;
-                flex: 1;
+                font-size: 1.2rem;
+                text-align: center;
             }
-
+            
+            .menu-toggle {
+                left: 1rem;
+                font-size: 1.4rem;
+            }
+            
             .logo {
-                display: block;
+                right: 1rem;
                 height: 40px;
+            }
+            
+            .container {
+                padding: 1.5rem;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .menu {
+                width: 270px;
             }
         }
     </style>
     <script>
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            const overlay = document.querySelector('.overlay');
-            const body = document.body;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to toggle menu
+            window.toggleMenu = function() {
+                const menu = document.querySelector('.menu');
+                const overlay = document.querySelector('.overlay');
+                const body = document.body;
 
-            if (menu.classList.contains('show')) {
-                menu.classList.remove('show');
-                overlay.style.display = 'none';
-                body.classList.remove('no-scroll');
-            } else {
-                menu.classList.add('show');
-                overlay.style.display = 'block';
-                body.classList.add('no-scroll');
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                    overlay.classList.remove('show');
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 500);
+                    body.classList.remove('no-scroll');
+                } else {
+                    menu.classList.add('show');
+                    overlay.style.display = 'block';
+                    setTimeout(() => {
+                        overlay.classList.add('show');
+                    }, 10);
+                    body.classList.add('no-scroll');
+                }
+            };
+
+            // Function to navigate
+            window.navigateTo = function(url) {
+                document.body.style.opacity = 0;
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 300);
+            };
+
+            // Close menu when clicking on overlay
+            document.querySelector('.overlay').addEventListener('click', toggleMenu);
+
+            // Toggle dark mode
+            window.toggleTheme = function() {
+                document.body.classList.toggle('dark-mode');
+                const icon = document.querySelector('.theme-toggle i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle i').className = 'fas fa-sun';
             }
-        }
 
-        function navigateTo(url) {
-            window.location.href = url;
-        }
+            // Add "peligroso" tags to dangerous individuals
+            const dangerousCards = document.querySelectorAll('.card[data-dangerous="true"]');
+            dangerousCards.forEach(card => {
+                const tag = document.createElement('div');
+                tag.classList.add('status-tag');
+                tag.textContent = 'Peligroso';
+                card.appendChild(tag);
+            });
+        });
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
     <header>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
         <h1>Personas Más Buscadas de la Naval</h1>
         <img src="pictures/logo.png" alt="Logo" class="logo">
     </header>
+
     <div class="overlay"></div>
     <div class="menu">
         <div class="menu-header">
             <h2>Menú</h2>
         </div>
-        <a href="index.html">Inicio</a>
-        <a href="info.html">Información</a>
-        <a href="ForoNaval.html" class="red">Foro</a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Video Secreto</a>
-        <a href="login.html" class="red">El Más Buscado</a>
-
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <a href="info.html"><i class="fas fa-info-circle"></i> Información</a>
+        <a href="ForoNaval.html" class="red"><i class="fas fa-comments"></i> Foro</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fas fa-video"></i> Video Secreto</a>
+        <a href="login.html" class="red"><i class="fas fa-user-secret"></i> El Más Buscado</a>
     </div>
+
     <div class="container">
         <div class="card" onclick="navigateTo('persona1.html')">
             <img src="pictures/img1.png" alt="Persona 1">
             <div class="card-content">
                 <h3>Jairon Lopez</h3>
-                <p>Un uso ilegal de ChatGPT incluye actividades como copiar tareas, exámenes, proyectos, entre otros.
-                </p>
+                <p>Un uso ilegal de ChatGPT incluye actividades como copiar tareas, exámenes, proyectos, entre otros.</p>
             </div>
         </div>
         <div class="card" onclick="navigateTo('persona2.html')">
             <img src="pictures/img2.png" alt="Persona 2">
             <div class="card-content">
                 <h3>Yeri Segura</h3>
-                <p>Buscado por robar material escolar de sus compañeros, como libros y cuadernos. Su comportamiento ha
-                    causado molestias en la escuela.</p>
+                <p>Buscado por robar material escolar de sus compañeros, como libros y cuadernos. Su comportamiento ha causado molestias en la escuela.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona3.html')">
+        <div class="card" data-dangerous="true" onclick="navigateTo('persona3.html')">
             <img src="pictures/img3.png" alt="Persona 3">
             <div class="card-content">
                 <h3>Pablo (Peligroso)</h3>
-                <p>Pablo, apodado "El Conserje", lidera una banda criminal que opera bajo la fachada de servicios de
-                    limpieza.</p>
+                <p>Pablo, apodado "El Conserje", lidera una banda criminal que opera bajo la fachada de servicios de limpieza.</p>
             </div>
         </div>
         <div class="card" onclick="navigateTo('persona4.html')">
             <img src="pictures/img4.png" alt="Persona 4">
             <div class="card-content">
                 <h3>Jeremy Moran</h3>
-                <p>Jeremy Moran, de 16 años, falla goles con el arco vacío, frustrando a su equipo. Ofrecen recompensa
-                    para acabar con su "maldición".</p>
+                <p>Jeremy Moran, de 16 años, falla goles con el arco vacío, frustrando a su equipo. Ofrecen recompensa para acabar con su "maldición".</p>
             </div>
         </div>
         <div class="card" onclick="navigateTo('persona5.html')">
             <img src="pictures/img5.png" alt="Persona 5">
             <div class="card-content">
                 <h3>Walter Abad</h3>
-                <p>Walter Abad, alias "El GRIFOTE", está volado por drogas y protagoniza situaciones raras como besar
-                    perros callejeros y hablar con palomas.</p>
+                <p>Walter Abad, alias "El GRIFOTE", está volado por drogas y protagoniza situaciones raras como besar perros callejeros y hablar con palomas.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona6.html')">
+        <div class="card" data-dangerous="true" onclick="navigateTo('persona6.html')">
             <img src="pictures/img6.png" alt="Persona 6">
             <div class="card-content">
-                <h3>La criatura (Peligroso)</h3>
-                <p>"La Sombra Movistar" es una misteriosa criatura que ronda los pasillos de la Academia Naval,
-                    generando inquietud debido a su naturaleza esquiva y desconocida.</p>
+                <h3>La criatura</h3>
+                <p>"La Sombra Movistar" es una misteriosa criatura que ronda los pasillos de la Academia Naval, generando inquietud debido a su naturaleza esquiva y desconocida.</p>
             </div>
         </div>
         <div class="card" onclick="navigateTo('persona7.html')">
             <img src="pictures/img7.png" alt="Persona 7">
             <div class="card-content">
                 <h3>Jose Vargas</h3>
-                <p>José Vargas, conocido mayormente como "Papi Thor", ha causado distracción y perturbación en la
-                    academia.</p>
+                <p>José Vargas, conocido mayormente como "Papi Thor", ha causado distracción y perturbación en la academia.</p>
             </div>
         </div>
         <div class="card" onclick="navigateTo('persona8.html')">
             <img src="pictures/img8.png" alt="Persona 8">
             <div class="card-content">
                 <h3>Joel Bastidas</h3>
-                <p>Joel Bastidas, alias "Amado", es un querido profesor de Biología acusado de robar materiales
-                    biológicos en un intento sospechoso de clonar a Cristiano Ronaldo.</p>
+                <p>Joel Bastidas, alias "Amado", es un querido profesor de Biología acusado de robar materiales biológicos en un intento sospechoso de clonar a Cristiano Ronaldo.</p>
             </div>
         </div>
         <div class="card" onclick="navigateTo('persona9.html')">
-            <img src="pictures/img9.png" alt="Persona 8">
+            <img src="pictures/img9.png" alt="Persona 9">
             <div class="card-content">
                 <h3>Jose Daniel Martinez</h3>
-                <p>José Daniel Martínez, alias Guanchichi, es buscado por robos en propiedades privadas y usar su trompa para morder y
-                causar daño.</p>
+                <p>José Daniel Martínez, alias Guanchichi, es buscado por robos en propiedades privadas y usar su trompa para morder y causar daño.</p>
             </div>
         </div>
         <div class="card" onclick="navigateTo('persona10.html')">
             <img src="pictures/img10.png" alt="Persona 10">
             <div class="card-content">
                 <h3>Karen Rodríguez</h3>
-                <p>Karen Rodríguez, alias Mami Karen, es buscada por lavar dinero, enseñando
-                estas técnicas a sus alumnos de la Academia Naval.</p>
+                <p>Karen Rodríguez, alias Mami Karen, es buscada por lavar dinero, enseñando estas técnicas a sus alumnos de la Academia Naval.</p>
             </div>
         </div>
         <div class="card" onclick="navigateTo('persona11.html')">
             <img src="pictures/img11.png" alt="Persona 11">
             <div class="card-content">
                 <h3>Nancy Guillem</h3>
-                <p>Nancy Guillem, alias Jaisemberg, creó dulces azules ilegales con ayuda de Juan Rosahombre y Gustavo de "Los Pollos
-                Campers".</p>
+                <p>Nancy Guillem, alias Jaisemberg, creó dulces azules ilegales con ayuda de Juan Rosahombre y Gustavo de "Los Pollos Campers".</p>
             </div>
         </div>
     </div>
-    <footer
-        style="text-align: center; padding: 20px; background-color: var(--primary-color); color: white; margin-top: 20px;">
-        © 2024 Academia Naval. Todos los derechos reservados.
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <footer>
+        <p>© 2024 Academia Naval. Todos los derechos reservados.</p>
+        <div style="margin-top: 10px; font-size: 1.2rem;">
+            <a href="#" style="color: white; margin: 0 8px;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color: white; margin: 0 8px;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: white; margin: 0 8px;"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
 </body>
 
