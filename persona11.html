@@ -1,148 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <link rel="icon" href="pictures\logo.ico" type="image/x-icon">
+    <link rel="icon" href="pictures/logo.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información sobre Nancy Guillem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-
         :root {
-            --primary-color: #003366;
-            --secondary-color: #0056b3;
-            --accent-color: #ffcc00;
-            --background-color: #f4f4f9;
-            --text-color: #333;
-            --light-gray: #ccc;
-            --font-family: 'Arial', sans-serif;
+            --primary-color: #1a4b78;
+            --secondary-color: #2a6bae;
+            --accent-color: #ffc107;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #343a40;
+            --text-secondary: #6c757d;
+            --border-radius: 12px;
+            --transition-speed: 0.3s;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --font-family-heading: 'Montserrat', sans-serif;
+            --font-family-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-family);
+            font-family: var(--font-family-body);
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
             color: var(--text-color);
-            transition: filter 0.3s ease;
+            transition: background-color 0.5s ease;
+            line-height: 1.6;
         }
 
         body.no-scroll {
             overflow: hidden;
         }
 
-        .logo {
-            position: absolute;
-            top: 0px;
-            right: 20px;
-            height: 70px;
-        }
-
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 20px;
-            text-align: center;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
             margin: 0;
-            font-size: 1.8em;
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+            transition: transform 0.5s ease;
         }
 
         .menu-toggle {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
             cursor: pointer;
-            font-size: 30px;
-            background: none;
             border: none;
+            background: transparent;
             color: white;
+            font-size: 1.6rem;
+            transition: transform var(--transition-speed);
             z-index: 1100;
+        }
+
+        .menu-toggle:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .logo {
+            position: absolute;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            height: 55px;
+            transition: transform var(--transition-speed);
+        }
+
+        .logo:hover {
+            transform: translateY(-50%) scale(1.05);
         }
 
         .menu {
             position: fixed;
             top: 0;
-            left: -250px;
-            width: 250px;
+            left: -300px;
+            width: 300px;
             height: 100%;
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
             overflow-y: auto;
             z-index: 1000;
-            transition: left 0.3s ease;
+            transition: left 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
         .menu.show {
             left: 0;
         }
 
+        .menu-header {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-family: var(--font-family-heading);
+        }
+
+        .menu-header h2 {
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
         .menu a {
             display: block;
-            padding: 15px;
+            padding: 1rem 1.5rem;
             text-decoration: none;
             color: white;
-            border-bottom: 1px solid var(--secondary-color);
-            transition: background 0.3s;
+            font-family: var(--font-family-body);
+            font-weight: 400;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s ease;
+            transform: skewX(-15deg);
+        }
+
+        .menu a:hover::before {
+            transform: translateX(100%) skewX(-15deg);
         }
 
         .menu a:hover {
-            background-color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-left: 2rem;
         }
 
         .menu a.red {
             color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .menu-header {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 5px;
-        }
-
-        .placeholder {
-            background: var(--background-color);
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 16px;
-        }
-
-        .image-section {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .image-section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border: 5px solid var(--light-gray);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
         }
 
         .overlay {
@@ -153,158 +174,571 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
             z-index: 999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
-        /* Estilos responsivos */
+        .overlay.show {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .profile-card {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-header {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .profile-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-header:hover img {
+            transform: scale(1.05);
+        }
+
+        .profile-info {
+            position: relative;
+            padding: 2.5rem;
+        }
+
+        .status-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            z-index: 2;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(255, 0, 0, 0.3);
+        }
+
+        .reward-badge {
+            position: absolute;
+            top: -20px;
+            right: 15px;
+            width: 100px;
+            height: 100px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: rotate(10deg);
+            z-index: 10;
+        }
+
+        .reward-badge span {
+            font-size: 0.7rem;
+            margin-bottom: 4px;
+        }
+
+        .info-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .info-section h2 {
+            color: var(--primary-color);
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .info-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .info-card {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .personal-info {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.8rem 1.5rem;
+            align-items: center;
+        }
+
+        .personal-info strong {
+            color: var(--primary-color);
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+        }
+
+        .history-text {
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .report-button {
+            display: inline-block;
+            background-color: #ff3b30;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 12px rgba(255, 59, 48, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .report-button:hover {
+            background-color: #e02e24;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(255, 59, 48, 0.5);
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-card, .info-section {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .info-section:nth-child(1) { animation-delay: 0.1s; }
+        .info-section:nth-child(2) { animation-delay: 0.2s; }
+        .info-section:nth-child(3) { animation-delay: 0.3s; }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        body.dark-mode {
+            --background-color: #121212;
+            --card-background: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
         @media screen and (max-width: 768px) {
-            .menu {
-                width: 200px;
-            }
-
-            .menu-toggle {
-                font-size: 28px;
-                top: 0;
-                left: 0;
-            }
-
-            .container {
-                margin: 10px;
-                padding: 15px;
-            }
-
             header {
-                padding: 15px;
-                text-align: center;
-                display: flex;
-                align-items: center;
+                padding: 1rem;
             }
-
+            
             header h1 {
-                font-size: 1em;
-                margin: 0;
-                flex: 1;
+                font-size: 1.2rem;
+                text-align: center;
             }
-
+            
+            .menu-toggle {
+                left: 1rem;
+                font-size: 1.4rem;
+            }
+            
             .logo {
-                display: block;
+                right: 1rem;
                 height: 40px;
             }
-        }
-    </style>
-    <script>
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            const overlay = document.querySelector('.overlay');
-            const body = document.body;
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .menu {
+                width: 270px;
+            }
 
-            if (menu.classList.contains('show')) {
-                menu.classList.remove('show');
-                overlay.style.display = 'none';
-                body.classList.remove('no-scroll');
-            } else {
-                menu.classList.add('show');
-                overlay.style.display = 'block';
-                body.classList.add('no-scroll');
+            .reward-badge {
+                width: 90px;
+                height: 90px;
+                font-size: 1rem;
+                top: -20px;
+                right: 20px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-header {
+                height: 220px;
+            }
+
+            .profile-info {
+                padding: 1.5rem;
             }
         }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 3rem;
+            font-family: var(--font-family-body);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        .personal-info {
+    display: grid;
+    gap: 1rem; /* Increased spacing for better readability on mobile */
+    padding: 1rem; /* Added padding for better spacing */
+}
+
+/* Style for individual info items */
+.info-item {
+    display: flex;
+    flex-direction: column; /* Stack labels and values vertically on mobile */
+    background-color: var(--card-background);
+    padding: 0.8rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for each item */
+    transition: transform 0.3s ease;
+}
+
+.info-item strong {
+    color: var(--primary-color);
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    font-size: 1rem; /* Slightly smaller font for mobile */
+    margin-bottom: 0.3rem; /* Space between label and value */
+}
+
+.info-item span {
+    color: var(--text-color);
+    font-size: 0.9rem; /* Smaller font for values on mobile */
+    line-height: 1.4; /* Better line spacing for readability */
+}
+
+/* Hover effect for desktop, disabled on mobile */
+.info-item:hover {
+    transform: translateY(-2px); /* Reduced hover effect for mobile */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    /* Existing mobile styles remain, with additions for personal-info */
+    .personal-info {
+        grid-template-columns: 1fr; /* Ensure single column on mobile */
+        gap: 0.8rem; /* Adjusted gap for tighter spacing on mobile */
+    }
+
+    .info-item {
+        padding: 0.6rem; /* Reduced padding for smaller screens */
+        font-size: 0.9rem; /* Slightly smaller overall font size */
+    }
+
+    .info-item strong {
+        font-size: 0.9rem; /* Smaller labels on mobile */
+    }
+
+    .info-item span {
+        font-size: 0.8rem; /* Smaller values on mobile */
+    }
+
+    /* Ensure text doesn’t wrap awkwardly */
+    .info-item {
+        word-wrap: break-word; /* Allow long words to break */
+        max-width: 100%; /* Full width on mobile */
+    }
+
+    /* Adjust container padding for mobile */
+    .container {
+        padding: 1rem; /* Reduced padding for smaller screens */
+    }
+
+    /* Slightly smaller header and card for mobile */
+    .profile-card {
+        margin-bottom: 1.5rem; /* Reduced margin on mobile */
+    }
+
+    .profile-header {
+        height: 180px; /* Reduced height for mobile */
+    }
+}
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.toggleMenu = function() {
+                const menu = document.querySelector('.menu');
+                const overlay = document.querySelector('.overlay');
+                const body = document.body;
+
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                    overlay.classList.remove('show');
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 500);
+                    body.classList.remove('no-scroll');
+                } else {
+                    menu.classList.add('show');
+                    overlay.style.display = 'block';
+                    setTimeout(() => {
+                        overlay.classList.add('show');
+                    }, 10);
+                    body.classList.add('no-scroll');
+                }
+            };
+
+            window.toggleTheme = function() {
+                document.body.classList.toggle('dark-mode');
+                const icon = document.querySelector('.theme-toggle i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+            }
+
+            document.body.style.opacity = 0;
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = 1;
+            }, 10);
+        });
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
     <header>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <h1>Información sobre Nancy Guillemz</h1>
-        <img src="pictures\logo.png" alt="Logo" class="logo">
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1>Información sobre Nancy Guillem</h1>
+        <img src="pictures/logo.png" alt="Logo" class="logo">
     </header>
+
     <div class="overlay"></div>
     <div class="menu">
         <div class="menu-header">
             <h2>Menú</h2>
         </div>
-        <a href="index.html">Inicio</a>
-        <a href="info.html">Información</a>
-        <a href="ForoNaval.html" class="red">Foro</a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Video Secreto</a>
-        <a href="login.html" class="red">El Más Buscado</a>
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <a href="info.html"><i class="fas fa-info-circle"></i> Información</a>
+        <a href="ForoNaval.html" class="red"><i class="fas fa-comments"></i> Foro</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fas fa-video"></i> Video Secreto</a>
+        <a href="login.html" class="red"><i class="fas fa-user-secret"></i> El Más Buscado</a>
     </div>
+
     <div class="container">
-        <h2>Datos de Identificación</h2>
-        <div class="placeholder">
-            <strong>Nombre:</strong> Nancy Guillem<br>
-            <strong>Alias:</strong> Jaisemberg<br>
-            <strong>Edad:</strong> 55 años <br>
-            <strong>Última ubicación conocida:</strong> En su laboratorio <br>
-        </div>
-
-        <h2>Motivo de Búsqueda</h2>
-        <div class="placeholder">
-Utilizó su conocimiento avanzado para fabricar "metas"
-azules (dulces cristalinos) en las afueras de un Tía desde una camioneta, generando confusión y controversia en el
-mercado.<br>
-            <strong>Recompensa:</strong> $1,000000<br>
-        </div>
-
-        <h2>Historia:</h2>
-        <div class="placeholder">
-Nancy Guillem, una destacada profesora de química, comenzó a preocuparse seriamente al ver que su jubilación estaba cada
-vez más cerca. Consciente de que su modesto salario no sería suficiente para mantener su estilo de vida, decidió buscar
-una solución poco convencional. Fue entonces cuando recordó a un exalumno de la Academia Naval, Juan Rosahombre, famoso
-por su habilidad para encontrar “oportunidades de negocio” poco ortodoxas.
-
-Al reunirse con Juan, este la convenció de aprovechar su conocimiento avanzado en química para crear un producto
-revolucionario: "metas" azules. Sin embargo, estas no serían drogas, sino dulces cristalinos de alta calidad que, por su
-apariencia, generarían un gran revuelo. A pesar de sus dudas iniciales, Nancy aceptó la propuesta, y juntos instalaron
-su laboratorio en las afueras de un supermercado Tía, operando desde una vieja camioneta.
-
-Los dulces rápidamente ganaron popularidad, pero también atrajeron la atención equivocada. Autoridades y compradores
-confundidos comenzaron a investigar, creyendo que se trataba de una operación de drogas. Aunque su negocio era
-técnicamente legal, la confusión y las ventas masivas los convirtieron en fugitivos.
-
-Cuando todo parecía perdido, Nancy tomó una decisión desesperada: contactar a Gustavo, un influyente jefe conocido en el
-bajo mundo como "Los Pollos Campers". Gustavo era famoso por sus operaciones encubiertas y su habilidad para convertir
-productos dudosos en éxitos del mercado negro. Después de intensas negociaciones, Gustavo accedió a distribuir los
-dulces azules bajo su red ilegal, a cambio de que Nancy y Juan montaran un laboratorio de producción debajo de su
-restaurante.
-
-Con el respaldo de Gustavo, la operación alcanzó un nuevo nivel de sofisticación. La producción de dulces aumentó
-drásticamente, y su distribución se extendió a zonas aún más amplias. Sin embargo, el riesgo también creció
-exponencialmente, y ahora Nancy, conocida como "Jaisemberg" en el bajo mundo, se enfrenta a una persecución aún mayor.
-Su historia sigue siendo un enigma, mientras las autoridades y rivales intentan descifrar el paradero del laboratorio y
-detener la expansión de su peculiar imperio azul.
-
-        </div>
-
-        <h2>Imágenes</h2>
-        <div class="image-section">
-            <p class="placeholder">Unica foto de su laboratorio:</p>
-            <img src="pictures\img11_1.png" alt="Foto principal de Jairon Lopez">
-
-            <p class="placeholder">Foto de donde opera:</p>
-            <img src="pictures\img11_2.png" alt="Foto principal de Jairon Lopez">
-        </div>
-                    <div style="text-align: center; margin-top: 20px;">
-                        <a href="pagina_de_reporte.html" style="
-                                            display: inline-block;
-                                            background-color: #ff0000;
-                                            color: white;
-                                            padding: 15px 30px;
-                                            text-decoration: none;
-                                            font-size: 18px;
-                                            font-weight: bold;
-                                            border-radius: 5px;
-                                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                                            transition: background-color 0.3s ease, transform 0.2s;
-                                        " onmouseover="this.style.backgroundColor='#cc0000'; this.style.transform='scale(1.05)';"
-                            onmouseout="this.style.backgroundColor='#ff0000'; this.style.transform='scale(1)';">
-                            REPORTAR AVISTAMIENTO
-                        </a>
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="pictures/img11.png" alt="Nancy Guillem">
+                <div class="status-tag">Buscada</div>
+            </div>
+            <div class="profile-info">
+                <div class="reward-badge">
+                    <span>Recompensa</span>
+                    $1,000,000
+                </div>
+                <div class="info-section">
+                    <h2>Datos principales</h2>
+                    <div class="info-card">
+                        <div class="personal-info">
+                            <strong>Nombre:</strong>
+                            <span>Nancy Guillem</span>
+                            
+                            <strong>Alias:</strong>
+                            <span>Jaisemberg</span>
+                            
+                            <strong>Edad:</strong>
+                            <span>55 años</span>
+                            
+                            <strong>Última ubicación:</strong>
+                            <span>En su laboratorio</span>
+                        </div>
                     </div>
-    </div>
-        <footer
-            style="text-align: center; padding: 20px; background-color: var(--primary-color); color: white; margin-top: 20px;">
-            © 2024 Academia Naval. Todos los derechos reservados.
-        </footer>
-</body>
+                </div>
 
+                <div class="info-section">
+                    <h2>Motivo de Búsqueda</h2>
+                    <div class="info-card">
+                        <p>Utilizó su conocimiento avanzado para fabricar "metas" azules (dulces cristalinos) en las afueras de un Tía desde una camioneta, generando confusión y controversia en el mercado. Recompensa: $1,000,000</p>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2>Historia</h2>
+                    <div class="info-card">
+                        <p class="history-text">
+                            Nancy Guillem, una destacada profesora de química, comenzó a preocuparse seriamente al ver que su jubilación estaba cada vez más cerca. Consciente de que su modesto salario no sería suficiente para mantener su estilo de vida, decidió buscar una solución poco convencional. Fue entonces cuando recordó a un exalumno de la Academia Naval, Juan Rosahombre, famoso por su habilidad para encontrar “oportunidades de negocio” poco ortodoxas.
+                        </p>
+                        <p class="history-text" style="margin-top: 1rem;">
+                            Al reunirse con Juan, este la convenció de aprovechar su conocimiento avanzado en química para crear un producto revolucionario: "metas" azules. Sin embargo, estas no serían drogas, sino dulces cristalinos de alta calidad que, por su apariencia, generarían un gran revuelo. A pesar de sus dudas iniciales, Nancy aceptó la propuesta, y juntos instalaron su laboratorio en las afueras de un supermercado Tía, operando desde una vieja camioneta.
+                        </p>
+                        <p class="history-text" style="margin-top: 1rem;">
+                            Los dulces rápidamente ganaron popularidad, pero también atrajeron la atención equivocada. Autoridades y compradores confundidos comenzaron a investigar, creyendo que se trataba de una operación de drogas. Aunque su negocio era técnicamente legal, la confusión y las ventas masivas los convirtieron en fugitivos.
+                        </p>
+                        <p class="history-text" style="margin-top: 1rem;">
+                            Cuando todo parecía perdido, Nancy tomó una decisión desesperada: contactar a Gustavo, un influyente jefe conocido en el bajo mundo como "Los Pollos Campers". Gustavo era famoso por sus operaciones encubiertas y su habilidad para convertir productos dudosos en éxitos del mercado negro. Después de intensas negociaciones, Gustavo accedió a distribuir los dulces azules bajo su red ilegal, a cambio de que Nancy y Juan montaran un laboratorio de producción debajo de su restaurante.
+                        </p>
+                        <p class="history-text" style="margin-top: 1rem;">
+                            Con el respaldo de Gustavo, la operación alcanzó un nuevo nivel de sofisticación. La producción de dulces aumentó drásticamente, y su distribución se extendió a zonas aún más amplias. Sin embargo, el riesgo también creció exponencialmente, y ahora Nancy, conocida como "Jaisemberg" en el bajo mundo, se enfrenta a una persecución aún mayor. Su historia sigue siendo un enigma, mientras las autoridades y rivales intentan descifrar el paradero del laboratorio y detener la expansión de su peculiar imperio azul.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2>Evidencia Fotográfica</h2>
+                    <div class="gallery">
+                        <div class="gallery-item">
+                            <img src="pictures/img11_1.png" alt="Laboratorio">
+                            <div class="gallery-caption">Única foto de su laboratorio</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="pictures/img11_2.png" alt="Lugar de operación">
+                            <div class="gallery-caption">Foto de donde opera</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <a href="pagina_de_reporte.html" class="report-button">
+                        <i class="fas fa-exclamation-triangle"></i> REPORTAR AVISTAMIENTO
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <footer>
+        <p>© 2024 Academia Naval. Todos los derechos reservados.</p>
+        <div style="margin-top: 10px; font-size: 1.2rem;">
+            <a href="#" style="color: white; margin: 0 8px;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color: white; margin: 0 8px;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: white; margin: 0 8px;"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+</body>
 </html>
