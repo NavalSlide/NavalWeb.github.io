@@ -5,25 +5,41 @@
     <link rel="icon" href="pictures\logo.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El mas Buscado</title>
+    <title>El Más Buscado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #003366;
-            --secondary-color: #0056b3;
-            --accent-color: #ffcc00;
-            --background-color: #f4f4f9;
-            --text-color: #333;
-            --light-gray: #ccc;
-            --font-family: 'Arial', sans-serif;
+            --primary-color: #1a4b78;
+            --secondary-color: #2a6bae;
+            --accent-color: #ffc107;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #343a40;
+            --text-secondary: #6c757d;
+            --border-radius: 12px;
+            --transition-speed: 0.3s;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --font-family-heading: 'Montserrat', sans-serif;
+            --font-family-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-family);
+            font-family: var(--font-family-body);
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
             color: var(--text-color);
-            transition: filter 0.3s ease;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            line-height: 1.6;
         }
 
         body.no-scroll {
@@ -33,124 +49,123 @@
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 20px;
-            text-align: center;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.5s ease;
         }
 
         header h1 {
             margin: 0;
-            font-size: 1.8em;
-            transition: font-size 0.3s ease, transform 0.3s ease;
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+            transition: transform 0.5s ease;
         }
 
         .menu-toggle {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
             cursor: pointer;
-            font-size: 30px;
-            background: none;
             border: none;
+            background: transparent;
             color: white;
+            font-size: 1.6rem;
+            transition: transform var(--transition-speed);
             z-index: 1100;
+        }
+
+        .menu-toggle:hover {
+            transform: translateY(-50%) scale(1.1);
         }
 
         .logo {
             position: absolute;
-            top: 0px;
-            right: 20px;
-            height: 70px;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            height: 55px;
+            transition: transform var(--transition-speed);
+        }
+
+        .logo:hover {
+            transform: translateY(-50%) scale(1.05);
         }
 
         .menu {
             position: fixed;
             top: 0;
-            left: -250px;
-            width: 250px;
+            left: -300px;
+            width: 300px;
             height: 100%;
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
             overflow-y: auto;
             z-index: 1000;
-            transition: left 0.3s ease;
+            transition: left 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), background 0.5s ease;
         }
 
         .menu.show {
             left: 0;
         }
 
+        .menu-header {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-family: var(--font-family-heading);
+        }
+
+        .menu-header h2 {
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
         .menu a {
             display: block;
-            padding: 15px;
+            padding: 1rem 1.5rem;
             text-decoration: none;
             color: white;
-            border-bottom: 1px solid var(--secondary-color);
-            transition: background 0.3s;
+            font-family: var(--font-family-body);
+            font-weight: 400;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s ease;
+            transform: skewX(-15deg);
+        }
+
+        .menu a:hover::before {
+            transform: translateX(100%) skewX(-15deg);
         }
 
         .menu a:hover {
-            background-color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-left: 2rem;
         }
 
-        .menu a.red {
+        .menu a.highlight {
             color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .menu-header {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid var(--light-gray);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            width: 300px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .card-content {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .card-content h3 {
-            margin: 0 0 10px;
-            color: var(--primary-color);
-            text-align: center;
-        }
-
-        .card-content p {
-            margin: 0;
+            font-weight: 600;
         }
 
         .overlay {
@@ -161,182 +176,191 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
             z-index: 999;
-        }
-                .container {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 20px;
-                height: 100vh;
-            }
-
-            .login-card {
-                background: white;
-                border: 1px solid var(--light-gray);
-                border-radius: 10px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                padding: 50px;
-                width: 400px;
-                text-align: center;
-            }
-
-            .login-card input {
-                width: 90%;
-                padding: 10px;
-                margin-bottom: 15px;
-                border: 1px solid var(--light-gray);
-                border-radius: 5px;
-                font-size: 16px;
-            }
-
-            .login-card button {
-                width: 100%;
-                padding: 10px;
-                background-color: var(--primary-color);
-                color: white;
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                cursor: pointer;
-            }
-
-            .login-card button:hover {
-                background-color: var(--secondary-color);
-            }
-
-            .hint {
-                margin-top: 10px;
-                color: var(--accent-color);
-                font-style: italic;
-            }
-
-
-    /* Estilos responsivos */
-    @media screen and (max-width: 768px) {
-        .menu {
-            width: 200px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
-        .menu-toggle {
-            font-size: 28px;
-            top: 0;
-            left: 0;
+        .overlay.show {
+            opacity: 1;
         }
 
         .container {
-            margin: 10px;
-            padding: 15px;
-        }
-
-        header {
-            padding: 15px;
-            text-align: center;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-        }
-
-        header h1 {
-            font-size: 1.2em;
-            margin: 0;
-            flex: 1;
-        }
-
-        .logo {
-            display: block;
-            height: 40px;
+            padding: 2.5rem;
+            min-height: calc(100vh - 200px);
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .login-card {
-            margin: 10px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
-            background-color: #ffffff;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-card h2 {
+            margin: 0 0 1.5rem;
+            color: var(--primary-color);
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
         }
 
         .login-card input {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #ddd;
+            width: 90%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--text-secondary);
             border-radius: 5px;
+            font-size: 1rem;
+            font-family: var(--font-family-body);
+            transition: border-color 0.3s ease;
+        }
+
+        .login-card input:focus {
+            border-color: var(--primary-color);
+            outline: none;
         }
 
         .login-card button {
             width: 100%;
-            padding: 10px;
-            font-size: 1em;
-            background-color: var(--primary-color, #007BFF);
+            padding: 0.8rem;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 5px;
+            font-size: 1rem;
+            font-family: var(--font-family-body);
+            font-weight: 500;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .login-card button:hover {
-            background-color: #0056b3;
+            background-color: var(--secondary-color);
         }
 
         .hint {
-            font-size: 0.9em;
-            color: gray;
-            margin-top: 10px;
+            margin-top: 1rem;
+            color: var(--accent-color);
+            font-style: italic;
+            font-size: 0.9rem;
         }
-    }
-</style>
 
-<script>
-    function toggleMenu() {
-        const menu = document.querySelector('.menu');
-        const overlay = document.querySelector('.overlay');
-        const body = document.body;
-
-        if (menu.classList.contains('show')) {
-            menu.classList.remove('show');
-            overlay.style.display = 'none';
-            body.classList.remove('no-scroll');
-        } else {
-            menu.classList.add('show');
-            overlay.style.display = 'block';
-            body.classList.add('no-scroll');
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
-    }
 
-    function navigateTo(url) {
-        window.location.href = url;
-    }
-
-    function login() {
-        const password = document.getElementById("password").value.toLowerCase();
-        if (password.includes("edad")) {
-            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-        } else {
-            alert("Contraseña incorrecta.");
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
-    }
-</script>
+
+        body.dark-mode {
+            --background-color: #121212;
+            --card-background: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 2rem;
+            font-family: var(--font-family-body);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: background-color 0.5s ease;
+        }
+
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                left: 1rem;
+                font-size: 1.4rem;
+            }
+
+            .logo {
+                right: 1rem;
+                height: 40px;
+            }
+
+            .menu {
+                width: 270px;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .login-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
 
 <body>
     <header>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
         <h1>Verifique su identidad</h1>
         <img src="pictures/logo.png" alt="Logo" class="logo">
     </header>
+
     <div class="overlay"></div>
     <div class="menu">
         <div class="menu-header">
-            <h2>Menú</h2>
+            <h2>Menú de Navegación</h2>
         </div>
-        <a href="index.html">Inicio</a>
-        <a href="info.html">Información</a>
-        <a href="ForoNaval.html" class="red">Foro</a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Video Secreto</a>
-        <a href="login.html" class="red">El Más Buscado</a>
+        <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+        <a href="info.html"><i class="fas fa-info-circle"></i> Información</a>
+        <a href="ForoNaval.html" class="highlight"><i class="fas fa-comments"></i> Foro de Discusión</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fas fa-video"></i> Video Secreto</a>
+        <a href="login.html" class="highlight"><i class="fas fa-user-secret"></i> El Más Buscado</a>
     </div>
+
     <div class="container">
         <div class="login-card">
             <h2>Acceso Restringido</h2>
@@ -345,8 +369,80 @@
             <p class="hint">Pista: "Que sube pero nunca baja"</p>
         </div>
     </div>
-    <footer
-        style="text-align: center; padding: 20px; background-color: var(--primary-color, #007BFF); color: white; margin-top: 20px;">
-        © 2024 Academia Naval. Todos los derechos reservados.
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <footer>
+        <p>© 2024 Academia Naval - Proyecto Educativo. Creado con fines pedagógicos.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle menu
+            window.toggleMenu = function() {
+                const menu = document.querySelector('.menu');
+                const overlay = document.querySelector('.overlay');
+                const body = document.body;
+
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                    overlay.classList.remove('show');
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                    }, 500);
+                    body.classList.remove('no-scroll');
+                } else {
+                    menu.classList.add('show');
+                    overlay.style.display = 'block';
+                    setTimeout(() => {
+                        overlay.classList.add('show');
+                    }, 10);
+                    body.classList.add('no-scroll');
+                }
+            };
+
+            // Close menu when clicking on overlay
+            document.querySelector('.overlay').addEventListener('click', toggleMenu);
+
+            // Toggle dark mode
+            window.toggleTheme = function() {
+                document.body.classList.toggle('dark-mode');
+                const icon = document.querySelector('.theme-toggle i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.querySelector('.theme-toggle i').className = 'fas fa-moon';
+            }
+        });
+
+        // Login function
+        function login() {
+            const password = document.getElementById("password").value.toLowerCase();
+            if (password.includes("edad")) {
+                document.body.style.opacity = 0;
+                setTimeout(() => {
+                    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                }, 300);
+            } else {
+                alert("Contraseña incorrecta.");
+            }
+        }
+    </script>
 </body>
+
+</html>

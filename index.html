@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <link rel="icon" href="pictures\logo.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personas Más Buscadas</title>
+    <title>Personas mas buscadas de la Academia Naval</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,6 +23,9 @@
             --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             --font-family-heading: 'Montserrat', sans-serif;
             --font-family-body: 'Poppins', sans-serif;
+            --intro-banner-bg: #f0f8ff;
+            --filter-btn-bg: white;
+            --filter-btn-color: #1a4b78;
         }
 
         * {
@@ -37,12 +40,38 @@
             padding: 0;
             background-color: var(--background-color);
             color: var(--text-color);
-            transition: background-color 0.5s ease;
+            transition: background-color 0.5s ease, color 0.5s ease;
             line-height: 1.6;
         }
 
         body.no-scroll {
             overflow: hidden;
+        }
+
+        .intro-banner {
+            background-color: var(--intro-banner-bg);
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            transition: background-color 0.5s ease;
+        }
+
+        .intro-banner h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-family: var(--font-family-heading);
+        }
+
+        .intro-banner p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-color);
+            transition: color 0.5s ease;
         }
 
         header {
@@ -54,6 +83,7 @@
             justify-content: center;
             position: relative;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.5s ease;
         }
 
         header h1 {
@@ -107,7 +137,7 @@
             box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
             overflow-y: auto;
             z-index: 1000;
-            transition: left 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transition: left 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), background 0.5s ease;
         }
 
         .menu.show {
@@ -161,7 +191,7 @@
             padding-left: 2rem;
         }
 
-        .menu a.red {
+        .menu a.highlight {
             color: var(--accent-color);
             font-weight: 600;
         }
@@ -198,7 +228,7 @@
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.5s ease;
             cursor: pointer;
             position: relative;
             height: 100%;
@@ -239,6 +269,7 @@
             right: 20px;
             height: 2px;
             background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            transition: background 0.5s ease;
         }
 
         .card-content h3 {
@@ -259,9 +290,10 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.6;
+            transition: color 0.5s ease;
         }
 
-        .status-tag {
+        .character-tag {
             position: absolute;
             top: 15px;
             right: 15px;
@@ -270,11 +302,11 @@
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            background-color: rgba(255, 0, 0, 0.8);
-            color: white;
+            background-color: rgba(255, 0, 0, 0.9);
+            color: #ffffff;
             z-index: 2;
             letter-spacing: 0.5px;
-            box-shadow: 0 3px 8px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
 
         footer {
@@ -286,6 +318,7 @@
             font-family: var(--font-family-body);
             font-size: 0.9rem;
             letter-spacing: 0.5px;
+            transition: background-color 0.5s ease;
         }
 
         /* Animation for page load */
@@ -340,6 +373,42 @@
             --text-color: #e0e0e0;
             --text-secondary: #b0b0b0;
             --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            --intro-banner-bg: #1e1e1e;
+            --filter-btn-bg: #1e1e1e;
+            --filter-btn-color: #e0e0e0;
+        }
+
+        body.dark-mode .card-content::before {
+            background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
+        }
+
+        /* Filter controls */
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            margin: 1rem auto;
+            max-width: 1200px;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0 1.5rem;
+        }
+
+        .filter-btn {
+            background-color: var(--filter-btn-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            font-family: var(--font-family-body);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--filter-btn-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
         }
 
         /* Responsive styles */
@@ -371,6 +440,19 @@
             
             .menu {
                 width: 270px;
+            }
+            
+            .intro-banner {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .intro-banner h2 {
+                font-size: 1.3rem;
+            }
+            
+            .intro-banner p {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -414,6 +496,8 @@
             window.toggleTheme = function() {
                 document.body.classList.toggle('dark-mode');
                 const icon = document.querySelector('.theme-toggle i');
+                
+                // Check if dark mode is active after toggle and update icon accordingly
                 if (document.body.classList.contains('dark-mode')) {
                     icon.className = 'fas fa-sun';
                     localStorage.setItem('theme', 'dark');
@@ -423,20 +507,53 @@
                 }
             };
 
-            // Check for saved theme preference
-            if (localStorage.getItem('theme') === 'dark') {
+            // Check for saved theme preference on page load
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
                 document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.querySelector('.theme-toggle i').className = 'fas fa-moon';
             }
 
-            // Add "peligroso" tags to dangerous individuals
-            const dangerousCards = document.querySelectorAll('.card[data-dangerous="true"]');
-            dangerousCards.forEach(card => {
+            // Add "character" tags to fictional characters
+            const characterCards = document.querySelectorAll('.card[data-character="true"]');
+            characterCards.forEach(card => {
                 const tag = document.createElement('div');
-                tag.classList.add('status-tag');
-                tag.textContent = 'Peligroso';
+                tag.classList.add('character-tag');
+                tag.textContent = 'PELIGROSO';
                 card.appendChild(tag);
             });
+            
+            // Filter functionality
+            window.filterCards = function(category) {
+                const cards = document.querySelectorAll('.card');
+                const buttons = document.querySelectorAll('.filter-btn');
+                
+                // Update active button
+                buttons.forEach(btn => {
+                    if (btn.dataset.filter === category) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                if (category === 'all') {
+                    cards.forEach(card => {
+                        card.style.display = 'flex';
+                    });
+                } else {
+                    cards.forEach(card => {
+                        if (card.dataset.category === category) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            };
         });
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -447,98 +564,104 @@
         <button class="menu-toggle" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
         </button>
-        <h1>Personas Más Buscadas de la Naval</h1>
+        <h1>Personas mas buscadas de la Academia Naval</h1>
         <img src="pictures/logo.png" alt="Logo" class="logo">
     </header>
 
     <div class="overlay"></div>
     <div class="menu">
         <div class="menu-header">
-            <h2>Menú</h2>
+            <h2>Menú de Navegación</h2>
         </div>
         <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
         <a href="info.html"><i class="fas fa-info-circle"></i> Información</a>
-        <a href="ForoNaval.html" class="red"><i class="fas fa-comments"></i> Foro</a>
+        <a href="ForoNaval.html" class="highlight"><i class="fas fa-comments"></i> Foro de Discusión</a>
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fas fa-video"></i> Video Secreto</a>
-        <a href="login.html" class="red"><i class="fas fa-user-secret"></i> El Más Buscado</a>
+        <a href="login.html" class="highlight"><i class="fas fa-user-secret"></i> El Más Buscado</a>
+    </div>
+    
+    <div class="filter-controls">
+        <button class="filter-btn active" data-filter="all" onclick="filterCards('all')">Todos</button>
+        <button class="filter-btn" data-filter="estudiantes" onclick="filterCards('estudiantes')">Estudiantes</button>
+        <button class="filter-btn" data-filter="profesores" onclick="filterCards('profesores')">Profesores</button>
     </div>
 
     <div class="container">
-        <div class="card" onclick="navigateTo('persona1.html')">
+        <div class="card" data-category="estudiantes" onclick="navigateTo('persona1.html')">
             <img src="pictures/img1.png" alt="Persona 1">
             <div class="card-content">
                 <h3>Jairon Lopez</h3>
-                <p>Un uso ilegal de ChatGPT incluye actividades como copiar tareas, exámenes, proyectos, entre otros.</p>
+                <p>Un estudiante de informática que investiga los usos éticos de la Inteligencia Artificial y cómo pueden aplicarse en el entorno académico.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona2.html')">
+        <div class="card" data-category="estudiantes" onclick="navigateTo('persona2.html')">
             <img src="pictures/img2.png" alt="Persona 2">
             <div class="card-content">
                 <h3>Yeri Segura</h3>
-                <p>Buscado por robar material escolar de sus compañeros, como libros y cuadernos. Su comportamiento ha causado molestias en la escuela.</p>
+                <p>Estudiante bibliotecario que ayuda a organizar y distribuir material educativo entre sus compañeros para fomentar el aprendizaje colaborativo.</p>
             </div>
         </div>
-        <div class="card" data-dangerous="true" onclick="navigateTo('persona3.html')">
+        <div class="card" data-character="true" data-category="profesores" onclick="navigateTo('persona3.html')">
             <img src="pictures/img3.png" alt="Persona 3">
             <div class="card-content">
-                <h3>Pablo (Peligroso)</h3>
-                <p>Pablo, apodado "El Conserje", lidera una banda criminal que opera bajo la fachada de servicios de limpieza.</p>
+                <h3>Pablo "El Conserje"</h3>
+                <p>Personaje ficticio creado para una historia de misterio. Pablo trabaja como conserje en la academia y descubre secretos ocultos en los pasillos.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona4.html')">
+        <div class="card" data-category="estudiantes"  onclick="navigateTo('persona4.html')">
             <img src="pictures/img4.png" alt="Persona 4">
             <div class="card-content">
                 <h3>Jeremy Moran</h3>
-                <p>Jeremy Moran, de 16 años, falla goles con el arco vacío, frustrando a su equipo. Ofrecen recompensa para acabar con su "maldición".</p>
+                <p>Estudiante deportista que lucha por superar sus dificultades en el campo de fútbol mientras mantiene un excelente rendimiento académico.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona5.html')">
+        <div class="card" data-category="estudiantes" onclick="navigateTo('persona5.html')">
             <img src="pictures/img5.png" alt="Persona 5">
             <div class="card-content">
                 <h3>Walter Abad</h3>
-                <p>Walter Abad, alias "El GRIFOTE", está volado por drogas y protagoniza situaciones raras como besar perros callejeros y hablar con palomas.</p>
+                <p>Estudiante creativo con una imaginación desbordante que sorprende a todos con su particular visión del mundo y su interés por la biología animal.</p>
             </div>
         </div>
-        <div class="card" data-dangerous="true" onclick="navigateTo('persona6.html')">
+        <div class="card" data-character="true" data-category="profesores" onclick="navigateTo('persona6.html')">
             <img src="pictures/img6.png" alt="Persona 6">
             <div class="card-content">
-                <h3>La criatura</h3>
-                <p>"La Sombra Movistar" es una misteriosa criatura que ronda los pasillos de la Academia Naval, generando inquietud debido a su naturaleza esquiva y desconocida.</p>
+                <h3>La Sombra Movistar</h3>
+                <p>Personaje legendario de la mitología de la academia, creado para un proyecto de creatividad narrativa que explora el folclore escolar.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona7.html')">
+        <div class="card" data-category="profesores" onclick="navigateTo('persona7.html')">
             <img src="pictures/img7.png" alt="Persona 7">
             <div class="card-content">
-                <h3>Jose Vargas</h3>
-                <p>José Vargas, conocido mayormente como "Papi Thor", ha causado distracción y perturbación en la academia.</p>
+                <h3>José "Profe Thor" Vargas</h3>
+                <p>Profesor de educación física con un entusiasmo contagioso que inspira a los estudiantes a mantenerse activos y adoptar hábitos saludables.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona8.html')">
+        <div class="card" data-category="profesores" onclick="navigateTo('persona8.html')">
             <img src="pictures/img8.png" alt="Persona 8">
             <div class="card-content">
-                <h3>Joel Bastidas</h3>
-                <p>Joel Bastidas, alias "Amado", es un querido profesor de Biología acusado de robar materiales biológicos en un intento sospechoso de clonar a Cristiano Ronaldo.</p>
+                <h3>Joel "Amado" Bastidas</h3>
+                <p>Profesor de Biología apasionado por la investigación genética y las innovaciones científicas, conocido por sus experimentos educativos creativos.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona9.html')">
+        <div class="card" data-category="estudiantes" onclick="navigateTo('persona9.html')">
             <img src="pictures/img9.png" alt="Persona 9">
             <div class="card-content">
-                <h3>Jose Daniel Martinez</h3>
-                <p>José Daniel Martínez, alias Guanchichi, es buscado por robos en propiedades privadas y usar su trompa para morder y causar daño.</p>
+                <h3>José Daniel "Guanchichi" Martínez</h3>
+                <p>Estudiante destacado en robótica que ha desarrollado prototipos innovadores para proyectos de ciencia utilizando materiales reciclados.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona10.html')">
+        <div class="card" data-category="profesores" onclick="navigateTo('persona10.html')">
             <img src="pictures/img10.png" alt="Persona 10">
             <div class="card-content">
                 <h3>Karen Rodríguez</h3>
-                <p>Karen Rodríguez, alias Mami Karen, es buscada por lavar dinero, enseñando estas técnicas a sus alumnos de la Academia Naval.</p>
+                <p>Profesora de Economía que enseña a sus estudiantes sobre finanzas personales y la importancia del manejo responsable del dinero.</p>
             </div>
         </div>
-        <div class="card" onclick="navigateTo('persona11.html')">
+        <div class="card" data-character="true" data-category="profesores" onclick="navigateTo('persona11.html')">
             <img src="pictures/img11.png" alt="Persona 11">
             <div class="card-content">
-                <h3>Nancy Guillem</h3>
-                <p>Nancy Guillem, alias Jaisemberg, creó dulces azules ilegales con ayuda de Juan Rosahombre y Gustavo de "Los Pollos Campers".</p>
+                <h3>Nancy Guillem "Jaisemberg"</h3>
+                <p>Personaje de una historia de ciencia ficción creada por estudiantes que explora conceptos científicos a través de la narrativa creativa.</p>
             </div>
         </div>
     </div>
@@ -548,7 +671,7 @@
     </div>
 
     <footer>
-        <p>© 2024 Academia Naval. Todos los derechos reservados.</p>
+        <p>© 2024 Academia Naval - Proyecto Educativo. Creado con fines pedagógicos.</p>
         <div style="margin-top: 10px; font-size: 1.2rem;">
             <a href="#" style="color: white; margin: 0 8px;"><i class="fab fa-facebook"></i></a>
             <a href="#" style="color: white; margin: 0 8px;"><i class="fab fa-twitter"></i></a>
